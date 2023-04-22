@@ -1,0 +1,138 @@
+
+
+<!-- <div class="container-fluid">
+  <div class="modal-header">
+    <h2>|Reactive Form|</h2>
+  </div>
+        Value : {{myForm.value|json}} 
+  <form   [formGroup]="myForm"> 
+
+  <div class="form-group">
+    <label>Name:</label>
+    <input type="text" 
+    formControlName="name"
+    [class.is-invalid]="name.invalid &&(name.dirty || name.touched)"
+    class="form-control" placeholder="Enter your name">
+    <section *ngIf="name.invalid &&(name.dirty || name.touched)">
+      <small class="text-danger" *ngIf="name.errors?.['required']">Name is required....!</small>
+      <small class="text-danger" *ngIf="name.errors?.['pattern']">Name should be min 8 & max 10 char log...!</small>
+    </section>
+  </div>
+  <div class="form-group">
+    <label>Phone:</label>
+    <input type="number" 
+    formControlName="phone"
+    class="form-control" placeholder="Enter your number">
+  </div>
+
+  <div class="form-group">
+    <label>Email:</label>
+    <input type="email"
+    formControlName="email"
+    class="form-control" placeholder="Enter your Email">
+  </div>
+  
+  <section class="form-control">
+    <button class="btn btn-sm btn-info" (click)="addEmails()">Add Emails</button>
+    <div class="form-group" formArrayName="alternativeEmails"
+     *ngFor="let emails of alternativeEmails.controls ; let i=index ;" >
+      <label>Email: {{i+1}}</label>
+      <input type="text"  class="form-control" 
+      [class.is-invalid]="emails.invalid &&(emails.dirty || emails.touched)"
+      [formControlName]="i">
+      <span class="badge badge-pills badge-danger" (click)="removeEmails(i)">X</span>
+      <section *ngIf="emails.invalid &&(emails.dirty || emails.touched)">
+        <small  class="taxt-danger" *ngIf="emails.errors?.['required']">alternativeEmails emails required</small>
+        <small  class="taxt-danger" *ngIf="emails.errors?.['pattern']">Pattren Did't match</small>
+      </section>
+    </div>
+  </section>
+
+
+  Adding a Address Field
+ <div class="card">
+  <fieldset formGroupName="address">
+    <legend>Address:</legend>
+    <div class="form-group">
+      <label>State:</label>
+      <select class="form-control"  formControlName="state"
+      (change)="onState()"
+      >
+        <option value="">Choose a state....</option>
+        <option *ngFor="let s of stateWiseCity" >{{s.state}}</option>
+      </select>
+
+
+
+      <input type="text" 
+      formControlName="state"
+      [class.is-invalid]="state.invalid && state.touched"
+      class="form-control" placeholder="Enter state ">
+      <section *ngIf="state.invalid && state.touched" >
+        <small class="text-danger" *ngIf="state.errors?.['required']">Pincode is required...</small>
+      </section> 
+    </div>
+
+    <div class="form-group">
+       <label>City</label>
+       <select class="form-control"  formControlName="city" >
+         <option value="">Choose a city</option>
+         <option *ngFor="let c of cityList" >{{c}}</option>
+       </select>
+
+    </div>
+    
+
+
+
+    <div class="form-group">
+      <label>Pincode:</label>
+      <input type="text" 
+      formControlName="pincode"
+      [class.is-invalid]="pincode.invalid && pincode.touched"
+      class="form-control" >
+      <section *ngIf="pincode.invalid &&  pincode.touched">
+     <small class="text-danger" *ngIf="pincode.errors?.['required']">Pincode is required...</small>
+     <small class="text-danger" *ngIf="pincode.errors?.['maxLength']">Pincode cross max length</small>
+     <small class="text-danger" *ngIf="pincode.errors?.['minLength']">Pincode min length 6</small>
+     <small class="text-danger" *ngIf="pincode.errors?.['pattern']">Pincode must be number 6 number only</small>
+  
+      </section>
+      </div>
+  </fieldset>
+ </div>
+
+
+
+
+
+
+
+  <div class="form-group">
+    <label>Password:</label>
+    <input type="password" 
+    formControlName="pass1"
+    [class.is-invalid]="myForm.errors?.mismatchError"
+    class="form-control" placeholder="Enter your password">
+    
+  </div>
+  <div class="form-group">
+    <label>Confirm Password:</label>
+    <input type="password" 
+    formControlName="pass2"
+   
+    class="form-control" placeholder="Enter your Confirm password">
+    <section *ngIf="myForm.errors?.mismatchError">
+      <small class="text-danger">Password did't matched</small>
+    </section>
+  </div>
+  <div class="form-group">
+    <button type="submit" [disabled]="!myForm.valid" class="btn btn-sm btn-outline-primary" (click)="onSubmit()">Submit</button>
+  </div>
+</form>
+
+</div> -->
+
+
+
+<app-new-form></app-new-form>

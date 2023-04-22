@@ -1,0 +1,217 @@
+<p>new-form works!</p>
+<form [formGroup]="myform2"> <!-- step 1 -->
+
+    <h4 style="background-color: blanchedalmond;">using formGroup</h4>
+    <div class="form-group">
+        <label>Name:</label>
+        <br>
+        <input type="text" class="form-control" formControlName="name">
+
+    </div>
+    <div class="form-group">
+        <label>email id:--</label>
+        <br>
+        <input type="email" formControlName="email">
+    </div>
+    <hr>
+    <br>
+    <h4 style="background-color: blanchedalmond;">using formBuilder</h4>
+    <h1>personal details</h1>
+    <div class="form-group">
+        <label>Name:</label>
+        <br>
+        <input type="text" formControlName="name" [class.is-invalid]="name.invalid &&(name.dirty || name.touched)">
+        <section *ngIf="name.invalid &&(name.dirty || name.touched)">
+            <small class="text-danger" *ngIf="name.errors?.['required']">Name is required....!</small>
+            <small class="text-danger" *ngIf="name.errors?.['pattern']">please follow the pattern....!</small>
+        </section>
+    </div>
+
+    <div class="form-group">
+
+        <label>Mobile Number:</label>
+        <br>
+        <input type="number" formControlName="number"
+            [class.is-invalid]="number.invalid &&(number.dirty || number.touched)">
+        <section *ngIf="number.invalid &&(number.dirty || number.touched)">
+            <small class="text-danger" *ngIf="number.errors?.['required']">Number is required....!</small>
+            <small class="text-danger" *ngIf="number.errors?.['pattern']">please follow the Number pattern....!</small>
+        </section>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <br>
+        <input type="email" formControlName="emaill"
+            [class.is-invalid]="emaill.invalid &&(emaill.dirty || emaill.touched)">
+        <section *ngIf="emaill.invalid &&(emaill.dirty || emaill.touched)">
+            <small class="text-danger" *ngIf="emaill.errors?.['required']">Email id is required....!</small>
+            <small class="text-danger" *ngIf="emaill.errors?.['pattern']">please follow the Email pattern....!</small>
+        </section>
+    </div>
+
+    <!-- .........................add altranative email...............-->
+
+    <section>
+        <button class="btn  btn-danger" (click)="addemail()" style="background-color: blue;">Add Emails</button>
+
+        <div class="form-group" formArrayName="altEmail" *ngFor="let ea of altEmail.controls ; let i=index ;">
+            <label>Email:-{{i+1}}</label>
+            <input type="email" [formControlName]="i" [class.is-invalid]="ea.invalid &&(ea.dirty || ea.touched)">
+            <span class="badge badge-pills badge-danger" (click)="removeEmails(i)"
+                style="background-color: blue;">remove</span>
+            <section *ngIf="ea.invalid &&(ea.dirty || ea.touched)">
+                <small class="text-danger" *ngIf="ea.errors?.['required']">Altranative Email id is required....!</small>
+                <small class="text-danger" *ngIf="ea.errors?.['pattern']">please follow the Email pattern....!</small>
+            </section>
+        </div>
+    </section>
+
+
+    <hr>
+    <hr>
+    <br>
+    <h1>password</h1>
+    <div class="form-group">
+        <label>Password:</label>
+        <br>
+        <input type="text" formControlName="pass1"
+            [class.is-invalid]="pass1.invalid && (pass1.dirty || pass1.touched)  ">
+        <section *ngIf="pass1.invalid &&(pass1.dirty || pass1.touched)">
+            <small class="text-danger" *ngIf="pass1.errors?.['required']">password is required....!</small>
+            <small class="text-danger" *ngIf="pass1.errors?.['pattern']"> Password must contain more than 8 characters,
+                1 numeric, 1 uppercase letter, and 1 special character($@$!%*?&)......!</small>
+        </section>
+    </div>
+    <div class="form-group">
+        <label>Confirm Password:</label>
+        <br>
+        <input type="text" formControlName="cpass1"
+            [class.is-invalid]="cpass1.invalid &&(cpass1.dirty || cpass1.touched)">
+        <section *ngIf="cpass1.invalid &&(cpass1.dirty || cpass1.touched)">
+            <small class="text-danger" *ngIf="cpass1.errors?.['required']">Confirm password is required....!</small>
+            <small class="text-danger" *ngIf="cpass1.errors?.['pattern']">please follow the pattern....!</small>
+        </section>
+        <div *ngIf="myform2.controls.cpass1.invalid">
+            <small class="text-danger">did not match</small>
+        </div>
+        <!-- <div *ngIf="myform2.errors?.mismatchError">
+            <small class="text-danger">Password did't matched</small>
+          </div>
+         -->
+
+    </div>
+    <hr>
+    <hr>
+    <br>
+    <h1>loan Group</h1>
+    <div class="form-group">
+        <label>Loan Name:--</label>
+        <br>
+        <input type="text" formControlName="Loan_Name"
+            [class.is-invalid]="Loan_Name.invalid &&(Loan_Name.dirty || Loan_Name.touched)">
+        <section *ngIf="Loan_Name.invalid &&(Loan_Name.dirty || Loan_Name.touched)">
+            <small class="text-danger" *ngIf="Loan_Name.errors?.['required']">Loan_Name is required....!</small>
+            <small class="text-danger" *ngIf="Loan_Name.errors?.['pattern']">please follow the Name
+                pattern....!</small>
+        </section>
+
+    </div>
+    <div class="form-group">
+        <label>Loan Number:-</label>
+        <br>
+        <input type="number" formControlName="Loan_Number"
+            [class.is-invalid]="Loan_Number.invalid &&(Loan_Number.dirty || Loan_Number.touched)">
+        <section *ngIf="Loan_Number.invalid &&(Loan_Number.dirty || Loan_Number.touched)">
+            <small class="text-danger" *ngIf="Loan_Number.errors?.['required']">Loan_Number is
+                required....!</small>
+            <small class="text-danger" *ngIf="Loan_Number.errors?.['pattern']">please follow the Number
+                pattern....!</small>
+        </section>
+
+    </div>
+    <div class="form-group">
+        <label>Loan Ammount:-</label>
+        <br>
+        <input type="number" formControlName="Loan_Ammount"
+            [class.is-invalid]="Loan_Ammount.invalid &&(Loan_Ammount.dirty || Loan_Ammount.touched)">
+        <section *ngIf="Loan_Ammount.invalid &&(Loan_Ammount.dirty || Loan_Ammount.touched)">
+            <small class="text-danger" *ngIf="Loan_Ammount.errors?.['required']">Loan_Ammount is
+                required....!</small>
+            <small class="text-danger" *ngIf="Loan_Ammount.errors?.['pattern']">please follow the Number
+                pattern....!</small>
+        </section>
+    </div>
+
+    <div class="card">
+        <fieldset formGroupName="address">
+
+            <legend>Address:-</legend>
+            <div class="form-group" formControlName="address">
+
+                <label>State:</label>
+                <br>
+                <select class="form-control" formControlName="state" (change)="forstate()">
+                    <option value="">CHOOSE A STATE.........!!</option>
+                    <option *ngFor="let s of stateWiseCity">{{s.state}}</option>
+                </select>
+
+                <!-- bellow code is normal validation-->
+                <!-- <input type="text" formControlName="state"
+                [class.is-invalid]="state.invalid &&(state.dirty || state.touched)">
+        <section *ngIf="state.invalid &&(state.dirty || state.touched)">
+            <small class="text-danger" *ngIf="state.errors?.['required']">state is required....!</small>
+            <small class="text-danger" *ngIf="state.errors?.['pattern']">please follow the state pattern....!</small>
+        </section> -->
+            </div>
+
+
+            <div class="form-group">
+                <label>City</label>
+                <br>
+                <select class="form-control" formControlName="city">
+                    <option value="">CHOOSE A CITY.....!</option>
+                    <option *ngFor="let c of citylist">{{c}}</option>
+                </select>
+
+
+                <!-- <input type="city" formControlName="city"
+                    [class.is-invalid]="city.invalid &&(city.dirty || city.touched)">
+                <section *ngIf="city.invalid &&(city.dirty || city.touched)">
+                    <small class="text-danger" *ngIf="city.errors?.['required']">city is required....!</small>
+                    <small class="text-danger" *ngIf="city.errors?.['pattern']">please follow the city
+                        pattern....!</small>
+                </section> -->
+            </div>
+            <div class="form-group">
+                <label>Pincode:</label>
+                <br>
+                <input type="number" formControlName="pincode"
+                    [class.is-invalid]="pincode.invalid &&(pincode.dirty || pincode.touched)">
+                <section *ngIf="pincode.invalid &&(pincode.dirty || pincode.touched)">
+                    <small class="text-danger" *ngIf="pincode.errors?.['required']">pincode is
+                        required....!</small>
+                    <small class="text-danger" *ngIf="pincode.errors?.['pattern']">please follow the pincode
+                        pattern
+                        [min_length=6 and max_length=8]....!</small>
+                </section>
+            </div>
+        </fieldset>
+    </div>
+      <div class="form-group">
+      <label>salary:--</label>
+      <input type="number" formControlName="salary">
+      <!-- <span [hidden]="!myform2.get('salary').hasError('isSufficient')">
+        <small class="text-danger"> Salary is not sufficient</small>
+      </span>   -->
+      <div *ngIf="myform2.controls.salary.invalid">
+        <small class="text-danger">salary is more than 100000</small>
+    </div>  
+    </div>
+
+    
+    <div class="form-group">
+        <button type="submit" [disabled]="!myform2.valid" class="btn btn-sm btn-outline-primary"
+            (click)="send()">Submit</button>  &nbsp;
+        <button type="reset" class="btn btn-sm btn-outline-primary" (click)="reset()">RESET</button>
+    </div>
+</form>
